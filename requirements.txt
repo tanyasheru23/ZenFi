@@ -1,0 +1,13 @@
+langchain==0.2.14
+langchain-core==0.2.36
+langchain-community==0.2.12
+langchain-openai==0.1.22
+langchain-text-splitters==0.2.2
+faiss-cpu
+pymupdf
+pypdf
+pandas
+tiktoken
+python-dotenv
+fastapi 
+uvicorn
