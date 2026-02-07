@@ -3,10 +3,16 @@ from pydantic import BaseModel
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi import Request
+
 
 from answer_generator import generate_answer
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
+
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small"
@@ -60,3 +66,9 @@ def chat(q: Query):
 
     return {"answer": response}
 
+@app.get("/chat-ui", response_class=HTMLResponse)
+def chat_ui(request: Request):
+    return templates.TemplateResponse(
+        "chat.html",
+        {"request": request}
+    )
